@@ -1,0 +1,5 @@
+{
+  "framework": "orisha",
+  "tls": "pass",
+  "check": "none"
+}
