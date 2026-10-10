@@ -3,6 +3,8 @@
 # Orisha HttpArena entry — builds orisha/httparena/main.k from the Koru toolchain.
 
 FROM ubuntu:24.04 AS build
+# All three repos build from main: koru@main carries the full arc (2120/2120
+# board), and the pump rewrite + kTLS helpers merged to their mains.
 ARG KORU_REF=main
 ARG ORISHA_REF=main
 ARG KORU_LIBS_REF=main

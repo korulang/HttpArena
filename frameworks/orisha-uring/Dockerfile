@@ -5,13 +5,13 @@
 # selects the drive|io-uring pump variant (per-worker ring + SO_REUSEPORT,
 # multishot recv, TLS via memory-BIO/kTLS).
 #
-# Refs: the arena-facing work is not on the repos' main yet — these defaults
-# point at the branches carrying it until they land.
+# All three repos build from main: koru@main carries the full arc (2120/2120
+# board), and the pump rewrite + kTLS helpers merged to their mains.
 
 FROM ubuntu:24.04 AS build
-ARG KORU_REF=k-sharp
-ARG ORISHA_REF=pump-tls-nb
-ARG KORU_LIBS_REF=tls-nb-helpers
+ARG KORU_REF=main
+ARG ORISHA_REF=main
+ARG KORU_LIBS_REF=main
 ARG ZIG_VERSION=0.15.2
 ENV DEBIAN_FRONTEND=noninteractive
 
