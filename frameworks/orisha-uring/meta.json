@@ -10,7 +10,7 @@
     "response": true
   },
   "engine": "io_uring",
-  "description": "Koru HTTP server compiled to native code via Zig — io_uring pump variant (per-worker ring + SO_REUSEPORT, multishot recv, kTLS). HttpArena routes wired through Orisha's handler seam.",
+  "description": "Koru HTTP server compiled to native code via Zig — io_uring pump variant (per-worker ring + SO_REUSEPORT, multishot recv, kTLS). HttpArena routes wired through Orisha's handler seam. No response cache and no startup pre-serialization: json serializes every field per request and compresses per request.",
   "repo": "https://github.com/korulang/orisha",
   "enabled": true,
   "tests": [
