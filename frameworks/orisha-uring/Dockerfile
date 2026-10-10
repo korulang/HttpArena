@@ -37,7 +37,14 @@ RUN git clone --depth 1 --branch "${KORU_REF}" https://github.com/korulang/koru.
 RUN cd koru && zig build && install -m755 zig-out/bin/koruc /usr/local/bin/koruc
 
 WORKDIR /src/orisha/httparena
-RUN mkdir -p /out \
+RUN mkdir -p /out /usr/local \
+    && rm -rf /usr/local/src /usr/local/koru_std \
+    && ln -sfn /src/koru/src /usr/local/src \
+    && ln -sfn /src/koru/koru_std /usr/local/koru_std \
+    && test -f /usr/local/src/ast.zig \
+    && rm -rf .zig-cache \
+        backend.zig backend_output_emitted.zig build.zig build_backend.zig build_output.zig \
+        output_emitted.zig program.ast.json compiler_env.zig a.out \
     && sed -i 's|orisha:serve(port: 8080)|orisha:serve(port: 8080, tls_port: 8081, cert_path: "/certs/server.crt", key_path: "/certs/server.key")|' main.k \
     && DATASET_PATH=./data/dataset.json koruc main.k --release=fast --build=io-uring \
     && install -m755 a.out /out/orisha-httparena-uring
